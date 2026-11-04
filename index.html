@@ -1,0 +1,107 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" />
+    <meta name="mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <title>Avalanche Run</title>
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22%3E%3Ctext y=%22.9em%22 font-size=%2290%22%3E%E2%9B%B7%3C/text%3E%3C/svg%3E" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Lilita+One&family=Luckiest+Guy&family=Fredoka:wght@500;700&display=swap" rel="stylesheet" />
+    <script type="module" crossorigin src="./assets/index-Cr2BSq4P.js"></script>
+    <link rel="stylesheet" crossorigin href="./assets/index-WAsdwOml.css">
+  </head>
+  <body>
+    <div id="app"></div>
+    <div id="loading">Building the mountain…</div>
+
+    <div id="hud" class="hidden">
+      <div id="topleft">
+        <div id="levelName">Level 1</div>
+        <div id="lives"></div>
+      </div>
+      <div id="topright">
+        <div id="runTime">0:00.0</div>
+        <div id="coins"><span class="coin">●</span><span id="coinNum">0</span></div>
+        <div id="flare" class="hidden"><span class="ico">🧨</span>×<span id="flareNum">0</span><kbd>F</kbd></div>
+      </div>
+      <div id="gapWrap">
+        <div id="gapBar"><div id="gapSnow"></div><div id="gapMe"></div><div id="gapLodge">⌂</div></div>
+        <div id="gapText">Gap 80 m</div>
+        <div id="surgeTag">Avalanche surge</div>
+      </div>
+      <div id="bottomleft">
+        <div id="speed"><span id="speedNum">0</span><small>km/h</small></div>
+        <div id="boostWrap"><div id="boostBar"></div><span>BOOST</span></div>
+      </div>
+      <div id="tip" class="hidden"></div>
+      <div id="popups"></div>
+      <div id="center"></div>
+      <div id="grind" class="hidden"><div id="grindName"></div><div id="balBar"><div id="balMark"></div></div><div id="grindKeys"><kbd>A</kbd><kbd>D</kbd> balance · <kbd>W</kbd><kbd>S</kbd> slide · <kbd>Q</kbd> grab · <kbd>Space</kbd> pop</div></div>
+      <div id="windup" class="hidden"><div id="windArrow"></div><div id="windBar"><div id="windFill"></div></div></div>
+      <div id="warnL" class="warn hidden">!</div>
+      <div id="warnR" class="warn hidden">!</div>
+      <div id="speedlines"></div>
+      <div id="danger"></div>
+    </div>
+
+    <div id="menu">
+      <div class="panel menuPanel">
+        <h1>Avalanche Run</h1>
+        <p class="tag">Nine levels. One avalanche. Don't look back.</p>
+        <div id="charPick" aria-label="Character"></div>
+        <div class="row runBtns">
+          <button id="startBtn">Start run<small>Enter</small></button>
+          <button id="dailyBtn" class="daily">Daily run<small id="dailyDate"></small></button>
+        </div>
+        <div id="dailyInfo" class="dailyInfo"></div>
+        <div class="row smallBtns">
+          <button id="tutorialBtn" class="secondary">Tutorial <kbd>T</kbd></button>
+          <button id="parkBtn" class="secondary">Jump park <kbd>J</kbd></button>
+          <button id="ghostBtn" class="secondary toggle" aria-pressed="false" title="Race a see-through replay of your best time on each course of a daily or ?seed= run">Ghost: off</button>
+          <button id="tiltBtn" class="secondary toggle touchOnly" aria-pressed="true">Tilt steering: on</button>
+        </div>
+        <p class="rotateHint touchOnly">Turn your phone sideways for the best view</p>
+        <details class="controlsBox">
+          <summary>Controls</summary>
+          <div class="controls touchOnly">
+            <div><b class="tk">Tilt</b><span>Steer like a wheel · wind up a spin</span></div>
+            <div><b class="tk">Left thumb</b><span>A stick: steer, ▲ tuck / front flip, ▼ brake / back flip</span></div>
+            <div><b class="tk">JUMP</b><span>Hold to crouch, let go to jump</span></div>
+            <div><b class="tk">GRAB</b><span>Grab in the air</span></div>
+            <div><b class="tk">BOOST</b><span>Spend boost</span></div>
+            <div><b class="tk">🧨</b><span>Throw a flare (when you have one)</span></div>
+          </div>
+          <div class="controls deskOnly">
+            <div><kbd>A</kbd><kbd>D</kbd><span>Steer · wind up a spin</span></div>
+            <div><kbd>W</kbd><span>Tuck · wind up a front flip</span></div>
+            <div><kbd>S</kbd><span>Brake · wind up a back flip</span></div>
+            <div><kbd>Space</kbd><span>Hold to crouch, let go to jump</span></div>
+            <div><kbd>Q</kbd><span>Grab in the air</span></div>
+            <div><kbd>Shift</kbd><span>Spend boost</span></div>
+            <div><kbd>W</kbd><kbd>S</kbd><span>On a rail: slide · A/D balance</span></div>
+            <div><kbd>F</kbd><span>Throw a flare</span></div>
+            <div><kbd>C</kbd><span>Look back</span></div>
+            <div><kbd>Esc</kbd><span>Pause · <kbd>M</kbd> music</span></div>
+          </div>
+          <p class="hint">Arrow keys work too. Jump crevasses or steer around the gap, watch the sides for snowballs and
+            falling trees. Tricks fill your boost; boost buys distance. Getting caught costs a life.</p>
+        </details>
+      </div>
+    </div>
+
+    <div id="overlay" class="hidden"></div>
+    <div id="pause" class="hidden"><div class="panel pausePanel"><h1>Paused</h1>
+      <button id="resumeBtn">Resume<small>Esc</small></button>
+      <div class="row smallBtns">
+        <button id="pauseGhostBtn" class="secondary toggle" aria-pressed="false">Ghost: off</button>
+        <button id="pauseMusicBtn" class="secondary toggle" aria-pressed="true">Music: on</button>
+        <button id="pauseTiltBtn" class="secondary toggle touchOnly" aria-pressed="true">Tilt steering: on</button>
+      </div>
+      <button id="quitBtn" class="secondary quit">Quit to menu</button>
+    </div></div>
+
+  </body>
+</html>
